@@ -30,12 +30,29 @@
 import Logo from '~/components/Logo.vue'
 import Header from '~/components/Header.vue'
 import Footer from '~/components/Footer.vue'
+import axios from '~/plugins/axios'
 
 export default {
   components: {
     Logo,
     Header,
     Footer
+  },
+  data() {
+    return {
+      offset: 0,
+      entries: []
+    }
+  },
+  asyncData({ params }) {
+    const offset = params.offset || 0
+    const limit = 15
+    return axios.get(`/entries?offset=0&limit=${limit}`).then(res => {
+      return {
+        offset: offset + limit,
+        entries: res.data
+      }
+    })
   }
 }
 </script>
