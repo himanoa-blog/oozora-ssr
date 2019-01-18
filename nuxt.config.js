@@ -3,6 +3,10 @@ const pkg = require('./package')
 module.exports = {
   mode: 'universal',
 
+  router: {
+    routes: [{ name: 'root', path: '/', component: 'pages/entries/index' }]
+  },
+
   /*
   ** Headers of the page
   */
