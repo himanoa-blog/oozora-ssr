@@ -1,5 +1,5 @@
 <template>
-  <div class="over-flow-hidden border-r border-b border-l border-grey-light">
+  <div class="over-flow-hidden border border-grey-ligh mx-24 my-4">
     <div class="px-6 py-4">
       <div class="font-bold text-xl mb-2">
         {{ title }}
