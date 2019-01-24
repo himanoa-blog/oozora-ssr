@@ -5,9 +5,10 @@
 </template>
 <style>
 .footer {
-  border: 0;
-  width: 100%;
   position: absolute;
+  height: 50px;
+  bottom: -1;
+  width: 100%;
 }
 </style>
 <script>

@@ -1,11 +1,15 @@
 <template>
-  <div class="over-flow-hidden border border-grey-ligh mx-24 my-4">
-    <div class="px-6 py-4">
+  <div class="over-flow-hidden border border-grey-ligh">
+    <div class="px-6 py-4 text-left">
       <div class="font-bold text-xl mb-2">
         {{ title }}
       </div>
-      <p class="text-grey-darker text-base">{{ body.slice(0, 140) }}</p>
+      <p class="text-base">{{ body.slice(0, 140) }}</p>
     </div>
+    <nuxt-link
+      :to="entryPath"
+      class="bg-green text-center text-bold border-t border-style w-full block p-2 text-white no-underline hover:bg-green-dark"
+    >続きを読む</nuxt-link>
   </div>
 </template>
 <script lang="ts">
@@ -13,6 +17,10 @@ import Vue from 'vue'
 
 export default Vue.extend({
   props: {
+    id: {
+      type: Number,
+      default: null
+    },
     title: {
       type: String,
       default: ''
@@ -20,6 +28,11 @@ export default Vue.extend({
     body: {
       type: String,
       default: ''
+    }
+  },
+  computed: {
+    entryPath() {
+      return `/entries/${this.id}`
     }
   }
 })

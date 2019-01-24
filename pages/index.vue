@@ -1,7 +1,9 @@
 <template>
   <div>
     <section>
-      <EntryList :entries="entries"/>
+      <EntryList
+        :entries="entries"
+      />
     </section>
   </div>
 </template>

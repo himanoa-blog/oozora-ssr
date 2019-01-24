@@ -1,19 +1,33 @@
 <template>
-  <h1 class="text-blue-dark">Hello {{ name }}</h1>
+  <Entry
+    :title="title"
+    :body="html"
+    :updated-at="updatedAt"
+  />
 </template>
 <script lang="ts">
-export default {
-  asyncData(context) {
-    return { name: 'World' }
+import Vue from 'vue'
+import axios from '~/plugins/axios'
+import Entry from '~/components/Entry.vue'
+
+export default Vue.extend({
+  components: { Entry },
+  validate({ params }) {
+    return /^\d+$/.test(params.id)
+  },
+  asyncData({ params }) {
+    return axios.get(`/entries/${params.id}`).then(res => {
+      return res.data
+    })
   },
   head() {
     return {
-      title: 'poepoe',
+      title: this.title,
       meta: [
-        { hid: 'description', name: 'description', content: 'テストです' },
-        { property: 'og-title', content: 'poepoe' },
+        { hid: 'description', name: 'description', content: this.body },
+        { property: 'og-title', content: this.title },
         { property: 'og-site_name', content: '遺言書' },
-        { property: 'og-description', content: 'テストです' },
+        { property: 'og-description', content: this.body },
         { property: 'og-locale', content: 'ja_JP' },
         { property: 'og:type', content: 'article' },
         {
@@ -25,5 +39,5 @@ export default {
       ]
     }
   }
-}
+})
 </script>
