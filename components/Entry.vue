@@ -1,16 +1,40 @@
 <template>
-  <div class="leading-normal">
+  <div class="leading-normal flex-col">
     <div class="py-8 font-bold bg-green-darker text-white mx-auto text-center">
       <h1 class="fond-bold text-white text-4xl">{{ title }}</h1>
       <time>{{ formatedUpdatedAt }}</time>
     </div>
     <div
       v-highlight
-      class="py-8 mx-0 sm:mx-0 md:mx-20 lg:mx-24 xl-mx-32"
+      class="mx-auto body w-full sm:w-full md:w-3/5 lg:w-1/2 xl:w-1/2 mx-auto my-8"
       v-html="body"/>
   </div>
 </template>
 <style>
+.body {
+  font-size: 21px;
+  line-height: 1.7;
+  overflow-wrap: break-word;
+}
+
+.body p {
+  margin-bottom: 1.7em;
+}
+
+.body h2 {
+  margin: 1em 0;
+  border-bottom: solid 2px #613b1f;
+}
+
+.body h2:before {
+  content: '# ';
+}
+
+.body h3 {
+  border-bottom: solid 2px #613b1f;
+  margin: 1em 0;
+}
+
 /* Tomorrow Night Theme */
 /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
 /* Original theme - https://github.com/chriskempson/tomorrow-theme */
@@ -119,9 +143,10 @@ export default {
   },
   computed: {
     formatedUpdatedAt() {
-      return DateTime.fromISO(this.updatedAt)
-        .setZone('Asia/Tokyo')
-        .setLocale('')
+      return DateTime.fromSQL(this.updatedAt, {
+        zone: 'utc'
+      })
+        .setZone('UTC+9')
         .toFormat('yyyy/MM/dd HH:mm')
     }
   }
