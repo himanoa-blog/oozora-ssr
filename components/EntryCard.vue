@@ -4,7 +4,7 @@
       <div class="font-bold text-xl mb-2">
         {{ title }}
       </div>
-      <p class="text-base">{{ body.slice(0, 140) }}</p>
+      <p class="text-base truncate">{{ body.slice(0, 140) }}</p>
     </div>
     <nuxt-link
       :to="entryPath"
@@ -12,6 +12,13 @@
     >続きを読む</nuxt-link>
   </div>
 </template>
+<style>
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+</style>
 <script lang="ts">
 import Vue from 'vue'
 

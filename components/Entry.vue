@@ -5,6 +5,7 @@
       <time>{{ formatedUpdatedAt }}</time>
     </div>
     <div
+      v-highlight
       class="py-8 mx-0 sm:mx-0 md:mx-20 lg:mx-24 xl-mx-32"
       v-html="body"/>
   </div>
@@ -99,10 +100,9 @@ pre .javascript .function {
 }
 </style>
 <script lang="ts">
-import Vue from 'vue'
 import { DateTime } from 'luxon'
 
-export default Vue.extend({
+export default {
   props: {
     title: {
       type: String,
@@ -125,5 +125,5 @@ export default Vue.extend({
         .toFormat('yyyy/MM/dd HH:mm')
     }
   }
-})
+}
 </script>
