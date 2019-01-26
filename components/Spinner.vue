@@ -1,69 +1,29 @@
 <template>
-  <div class="loader">
-    Loading
-  </div>
+  <div class="loader"/>
 </template>
 <style scoped>
-.loader {
-  font-size: 10px;
-  margin: 50px auto;
-  text-indent: -9999em;
-  width: 11em;
-  height: 11em;
+.loader,
+.loader:after {
   border-radius: 50%;
-  background: #ffffff;
-  background: -moz-linear-gradient(
-    left,
-    #ffffff 10%,
-    rgba(255, 255, 255, 0) 42%
-  );
-  background: -webkit-linear-gradient(
-    left,
-    #ffffff 10%,
-    rgba(255, 255, 255, 0) 42%
-  );
-  background: -o-linear-gradient(left, #ffffff 10%, rgba(255, 255, 255, 0) 42%);
-  background: -ms-linear-gradient(
-    left,
-    #ffffff 10%,
-    rgba(255, 255, 255, 0) 42%
-  );
-  background: linear-gradient(
-    to right,
-    #ffffff 10%,
-    rgba(255, 255, 255, 0) 42%
-  );
+  width: 10em;
+  height: 10em;
+}
+.loader {
+  margin: 60px auto;
+  font-size: 10px;
   position: relative;
-  -webkit-animation: load3 1.4s infinite linear;
-  animation: load3 1.4s infinite linear;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(56, 193, 114, 0.2);
+  border-right: 1.1em solid rgba(56, 193, 114, 0.2);
+  border-bottom: 1.1em solid rgba(56, 193, 114, 0.2);
+  border-left: 1.1em solid #38c172;
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
 }
-.loader:before {
-  width: 50%;
-  height: 50%;
-  background: #ffffff;
-  border-radius: 100% 0 0 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  content: '';
-}
-.loader:after {
-  background: #0dc5c1;
-  width: 75%;
-  height: 75%;
-  border-radius: 50%;
-  content: '';
-  margin: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-@-webkit-keyframes load3 {
+@-webkit-keyframes load8 {
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
@@ -73,7 +33,7 @@
     transform: rotate(360deg);
   }
 }
-@keyframes load3 {
+@keyframes load8 {
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);

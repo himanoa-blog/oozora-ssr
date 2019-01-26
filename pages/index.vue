@@ -1,10 +1,10 @@
 <template>
   <div>
     <section>
-      <Spinner />
       <EntryList
         :entries="entries"
       />
+      <Spinner v-show="loading"/>
     </section>
   </div>
 </template>
@@ -36,7 +36,11 @@ export default Vue.extend({
         document.documentElement.scrollTop + window.innerHeight
       const bottomPosition = document.documentElement.offsetHeight
 
-      if (!this.loading && scrollingPosition >= bottomPosition) {
+      if (
+        this.entriesCount !== this.entries.length &&
+        !this.loading &&
+        scrollingPosition >= bottomPosition
+      ) {
         this.loading = true
         await this.fetchData()
         this.loading = false
