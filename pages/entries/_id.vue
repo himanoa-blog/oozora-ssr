@@ -15,10 +15,15 @@ export default Vue.extend({
   validate({ params }) {
     return /^\d+$/.test(params.id)
   },
-  asyncData({ params }) {
-    return axios.get(`/entries/${params.id}`).then(res => {
-      return res.data
-    })
+  asyncData({ params, error }) {
+    return axios
+      .get(`/entries/${params.id}`)
+      .then(res => {
+        return res.data
+      })
+      .catch(err => {
+        error({ statusCode: 404, message: 'ページが見つかりません' })
+      })
   },
   head() {
     return {

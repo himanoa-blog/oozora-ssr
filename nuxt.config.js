@@ -12,6 +12,9 @@ module.exports = {
   */
   head: {
     title: pkg.name,
+    script: [
+      { src: 'https://platform.twitter.com/widgets.js', id: 'twitter-wjs' }
+    ],
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
