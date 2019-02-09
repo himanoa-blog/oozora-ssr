@@ -1,4 +1,6 @@
 const pkg = require('./package')
+require('dotenv').config()
+const axios = require('axios')
 
 module.exports = {
   mode: 'universal',
@@ -44,7 +46,41 @@ module.exports = {
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/dotenv',
-    '~/modules/typescript.js'
+    '~/modules/typescript.js',
+    '@nuxtjs/feed'
+  ],
+  feed: [
+    {
+      path: '/rss', // The route to your feed.
+      async create(feed) {
+        feed.options = {
+          title: '遺言書',
+          link: 'https://blog.himanoa.net/rss',
+          description: '遺言を書きます'
+        }
+
+        const posts = (await axios.get(
+          `${process.env.apiUrl}/entries?offset=0&limit=15`
+        )).data.entries
+        posts.forEach(post => {
+          feed.addItem({
+            title: post.title,
+            id: post.id,
+            link: `https://blog.himanoa.net/entries/${post.id}`,
+            description: post.html,
+            content: post.html
+          })
+        })
+
+        feed.addContributor({
+          name: 'himanoa',
+          email: 'matsunoappy@gmail.com',
+          link: 'https://blog.himanoa.net'
+        })
+      },
+      cacheTime: 1000 * 60 * 15, // How long should the feed be cached
+      type: 'rss2' // Can be: rss2, atom1, json1
+    }
   ],
   /*
   ** Axios module configuration
