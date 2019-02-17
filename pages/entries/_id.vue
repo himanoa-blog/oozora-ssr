@@ -22,7 +22,7 @@ export default Vue.extend({
         return res.data
       })
       .catch(err => {
-        error({ statusCode: 404, message: 'ページが見つかりません' })
+        error({ statusCode: '404', message: 'ページが見つかりません' })
       })
   },
   head() {
